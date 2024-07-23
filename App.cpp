@@ -47,10 +47,27 @@ void App::doInput(void)
 			exit(0);
 			break;
 
+		case SDL_KEYDOWN:
+			switch (event.key.keysym.sym)
+			{
+			case SDLK_UP:
+				break;
+			case SDLK_DOWN:
+				break;	
+			case SDLK_LEFT:
+				break;	
+			case SDLK_RIGHT:
+				break;
+			default:
+				break;
+			}
+			break;
+
 		default:
 			break;
 		}
 	}
+
 }
 
 void App::prepareScene(void)
