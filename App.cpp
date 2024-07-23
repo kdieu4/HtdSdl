@@ -2,6 +2,7 @@
 #include <SDL_image.h>
 #include "utils.h"
 #include "Entity.h"
+#include "Player.h"
 
 void App::initSdl()
 {
@@ -47,22 +48,6 @@ void App::doInput(void)
 			exit(0);
 			break;
 
-		case SDL_KEYDOWN:
-			switch (event.key.keysym.sym)
-			{
-			case SDLK_UP:
-				break;
-			case SDLK_DOWN:
-				break;	
-			case SDLK_LEFT:
-				break;	
-			case SDLK_RIGHT:
-				break;
-			default:
-				break;
-			}
-			break;
-
 		default:
 			break;
 		}
@@ -84,13 +69,12 @@ void App::presentScene(void)
 void App::run(void)
 {
 	initSdl();
-	Entity* player = new Entity(this);
+	Player* player = new Player(this);
 	while (true)
 	{
 		prepareScene();
-
-		doInput();
-
+		
+		player->userInput();
 		player->draw();
 
 		presentScene();
