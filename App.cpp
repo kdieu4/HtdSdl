@@ -2,6 +2,7 @@
 #include <SDL_image.h>
 #include "utils.h"
 #include "Entity.h"
+#include "Player.h"
 
 void App::initSdl()
 {
@@ -51,6 +52,7 @@ void App::doInput(void)
 			break;
 		}
 	}
+
 }
 
 void App::prepareScene(void)
@@ -67,13 +69,12 @@ void App::presentScene(void)
 void App::run(void)
 {
 	initSdl();
-	Entity* player = new Entity(this);
+	Player* player = new Player(this);
 	while (true)
 	{
 		prepareScene();
-
-		doInput();
-
+		
+		player->userInput();
 		player->draw();
 
 		presentScene();
