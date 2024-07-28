@@ -2,6 +2,7 @@
 #include <SDL.h>
 #include <stdio.h>
 #include "defs.h"
+#include "ScreenMode.h"
 
 class App {
 	
@@ -14,5 +15,8 @@ class App {
 public:
 	SDL_Renderer* renderer;
 	SDL_Window* window;
+	SDL_Surface* screenSurface;
+	SDL_Surface* currentSurface;
+	ScreenMode screenMode = Surface;
 	void run(void);
 };

@@ -1,0 +1,4 @@
+
+enum ScreenMode {
+	Renderer, Surface
+};
