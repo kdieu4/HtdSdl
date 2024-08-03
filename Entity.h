@@ -30,8 +30,7 @@ inline Entity::Entity(App* app)
 	x = 100;
 	y = 100;
 	this->app = app;
-	char path[] = ".\\res\\plane_pack\\planes\\plane_1\\plane_1_red.png";
-	texture = loadTexture(path, this->app->renderer);
+	texture = loadTexture(PLANE_1_RED, this->app->renderer);
 }
 
 Entity::~Entity()
@@ -40,5 +39,12 @@ Entity::~Entity()
 
 void Entity::draw()
 {
-	blit(app->renderer, texture, x, y);
+	switch (app->screenMode)
+	{
+	case Renderer:
+		blit(app->renderer, texture, x, y);
+		break;
+	default:
+		break;
+	}
 }

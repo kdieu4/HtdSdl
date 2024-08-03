@@ -24,15 +24,27 @@ void App::initSdl()
 		printf("Failed to open %d x %d window: %s\n", SCREEN_WIDTH, SCREEN_HEIGHT, SDL_GetError());
 		exit(1);
 	}
-
-	SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "linear");
-
-	renderer = SDL_CreateRenderer(window, -1, rendererFlags);
-
-	if (!renderer)
+	else
 	{
-		printf("Failed to create renderer: %s\n", SDL_GetError());
-		exit(1);
+		switch (screenMode)
+		{
+		case Renderer:
+			SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "linear");
+			renderer = SDL_CreateRenderer(window, -1, rendererFlags);
+			if (!renderer)
+			{
+				printf("Failed to create renderer: %s\n", SDL_GetError());
+				exit(1);
+			}
+			break;
+		case Surface:
+			screenSurface = SDL_GetWindowSurface(window);
+			currentSurface = loadSurface(PRESS);
+			break;
+		default:
+			break;
+		}
+
 	}
 }
 
@@ -57,13 +69,34 @@ void App::doInput(void)
 
 void App::prepareScene(void)
 {
-	SDL_SetRenderDrawColor(renderer, 96, 128, 255, 255);
-	SDL_RenderClear(renderer);
+	switch (screenMode)
+	{
+	case Renderer:
+		SDL_SetRenderDrawColor(renderer, 96, 128, 255, 255);
+		SDL_RenderClear(renderer);
+		break;
+	case Surface:
+		break;
+	default:
+		break;
+	}
+
 }
 
 void App::presentScene(void)
 {
-	SDL_RenderPresent(renderer);
+	switch (screenMode)
+	{
+	case Renderer:
+		SDL_RenderPresent(renderer);
+		break;
+	case Surface:
+		SDL_BlitSurface(currentSurface, NULL, screenSurface, NULL);
+		SDL_UpdateWindowSurface(window);
+		break;
+	default:
+		break;
+	}
 }
 
 void App::run(void)
@@ -73,7 +106,7 @@ void App::run(void)
 	while (true)
 	{
 		prepareScene();
-		
+
 		player->userInput();
 		player->draw();
 

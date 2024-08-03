@@ -28,6 +28,9 @@
     <Filter Include="Source Files\data\model">
       <UniqueIdentifier>{1501e7ff-c8ea-4aaf-b4f6-c1007421de0f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\presentation\helper">
+      <UniqueIdentifier>{aa40b669-14cb-499b-ba93-fe6c97a37078}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -38,6 +41,9 @@
     </ClCompile>
     <ClCompile Include="utils.cpp">
       <Filter>Source Files\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="ScreenMode.h">
+      <Filter>Source Files\presentation\helper</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -53,5 +59,15 @@
     <ClInclude Include="utils.h">
       <Filter>Source Files\utils</Filter>
     </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Source Files\data\model</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include=".gitattributes" />
+    <None Include=".gitignore" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="LICENSE.txt" />
   </ItemGroup>
 </Project>
